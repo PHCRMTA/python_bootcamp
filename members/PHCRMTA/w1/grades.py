@@ -1,20 +1,11 @@
-def summary(scores):
-    if len(scores) == 0:
-        raise ValueError("The scores list is empty.")
+def summary(scores: list[float]) -> dict:
+    if not scores:
+        raise ValueError("The scores list cannot be empty.")
 
-    min_val = scores[0]
-    max_val = scores[0]
-    sum = 0
-
-    for score in scores:
-        if score < min_val:
-            min_val = score
-        if score > max_val:
-            max_val = score
-        sum += score
-
+    min_val = min(scores)
+    max_val = max(scores)
     n = len(scores)
-    mean_val = sum / n
+    mean_val = sum(scores) / n
 
     sorted_scores = sorted(scores)
 
@@ -29,5 +20,5 @@ def summary(scores):
         "min": min_val,
         "max": max_val,
         "mean": round(mean_val, 2),
-        "median": round(median_val, 2)
+        "median": round(median_val, 2),
     }
